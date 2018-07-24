@@ -65,16 +65,4 @@ public class TankMovement : MonoBehaviour {
         // Apply this rotation to the rigidbody's rotation
         m_Rigidbody.MoveRotation(m_Rigidbody.rotation * turnRotation);
     }
-
-    // Use this for initialization
-    void Start () 
-	{
-
-	}
-	
-	// Update is called once per frame
-	void Update () 
-	{
-		
-	}
 }
