@@ -1,2 +1,2 @@
 # Tanks
-Tanks game bult following tutorial from AIE
+Tanks game built following tutorial from AIE.
