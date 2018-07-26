@@ -39,11 +39,8 @@ public class EnemyTankMovement : MonoBehaviour {
 	void Update () {
 		if(m_Follow == false)
         {
-            Debug.Log("Not close enough");
             return;
         }
-
-        Debug.Log("Close enough");
 
         // Get distance from player to enemy tank
         float distance = (m_Player.transform.position - transform.position).magnitude;
