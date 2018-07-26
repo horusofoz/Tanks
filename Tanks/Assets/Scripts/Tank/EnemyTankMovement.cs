@@ -6,7 +6,7 @@ using UnityEngine.AI;
 public class EnemyTankMovement : MonoBehaviour {
 
     // The tank will stop moving towards the player once it reaches this distance
-    public float m_CloseDistance = 8f;
+    public float m_CloseDistance = 5f;
     // The tank's turret object
     public Transform m_Turret;
 
@@ -16,6 +16,9 @@ public class EnemyTankMovement : MonoBehaviour {
     private NavMeshAgent m_NavAgent;
     // A reference to the rigidbody component
     private Rigidbody m_Rigidbody;
+
+    // Reference to enemy base/spawn location
+    private Transform m_EnemyTankBaseLocation;
 
     // Will be set to true when this tank should follow the player
     private bool m_Follow;
@@ -27,38 +30,25 @@ public class EnemyTankMovement : MonoBehaviour {
             m_NavAgent = GetComponent<NavMeshAgent>();
             m_Rigidbody = GetComponent<Rigidbody>();
             m_Follow = false;
+            m_EnemyTankBaseLocation = GameObject.FindGameObjectWithTag("EnemyBase").transform;
         }
     }
 
     // Use this for initialization
-    void Start () {
-		
+    void Start ()
+    {
+        
 	}
 	
 	// Update is called once per frame
 	void Update () {
 		if(m_Follow == false)
         {
-            return;
-        }
-
-        // Get distance from player to enemy tank
-        float distance = (m_Player.transform.position - transform.position).magnitude;
-
-        // if distance is less than stop distance, then stop moving
-        if(distance > m_CloseDistance)
-        {
-            m_NavAgent.SetDestination(m_Player.transform.position);
-            m_NavAgent.Resume();
+            ReturnToBase();
         }
         else
         {
-            m_NavAgent.Stop();
-        }
-
-        if(m_Turret != null)
-        {
-            m_Turret.LookAt(m_Player.transform);
+            ChasePlayer();
         }
 	}
 
@@ -88,6 +78,44 @@ public class EnemyTankMovement : MonoBehaviour {
         if (other.tag == "Player")
         {
             m_Follow = false;
+        }
+    }
+
+    private void ChasePlayer()
+    {
+        // Get distance from player to enemy tank
+        float distance = (m_Player.transform.position - transform.position).magnitude;
+
+        // if distance is less than stop distance, then stop moving
+        if (distance > m_CloseDistance)
+        {
+            m_NavAgent.SetDestination(m_Player.transform.position);
+            m_NavAgent.Resume();
+        }
+        else
+        {
+            m_NavAgent.Stop();
+        }
+
+        if (m_Turret != null)
+        {
+            m_Turret.LookAt(m_Player.transform);
+        }
+    }
+
+    private void ReturnToBase()
+    {
+        // Get distance from enemy base to enemy tank
+        float distance = (m_EnemyTankBaseLocation.position - transform.position).magnitude;
+
+        // Set navagent destination to base
+        m_NavAgent.SetDestination(m_EnemyTankBaseLocation.position);
+        m_NavAgent.Resume();
+
+        // Make enemy turret look at player
+        if (m_Turret != null)
+        {
+            m_Turret.LookAt(m_Player.transform);
         }
     }
 }

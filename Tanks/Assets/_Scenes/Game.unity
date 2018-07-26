@@ -1195,10 +1195,26 @@ Prefab:
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 0edafda971cf9a04eba7301908332b44, type: 3}
   m_IsPrefabParent: 0
+--- !u!1 &788172879 stripped
+GameObject:
+  m_PrefabParentObject: {fileID: 100000, guid: ca50e3b39d306a848a690c0d166c7a36, type: 3}
+  m_PrefabInternal: {fileID: 162649732}
 --- !u!4 &788172880 stripped
 Transform:
   m_PrefabParentObject: {fileID: 400000, guid: ca50e3b39d306a848a690c0d166c7a36, type: 3}
   m_PrefabInternal: {fileID: 162649732}
+--- !u!65 &788172883
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 788172879}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 9.5540695, y: 2.8366528, z: 5.2249527}
+  m_Center: {x: 0.44072366, y: 1.3399477, z: -0.00000035762787}
 --- !u!1001 &858611962
 Prefab:
   m_ObjectHideFlags: 0
@@ -1865,6 +1881,18 @@ Transform:
   m_PrefabParentObject: {fileID: 400000, guid: ca50e3b39d306a848a690c0d166c7a36, type: 3}
   m_PrefabInternal: {fileID: 1761741158}
 --- !u!65 &1317671084
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1317671080}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 9.5540695, y: 2.8366528, z: 5.2249527}
+  m_Center: {x: 0.44072366, y: 1.3399477, z: -0.00000035762787}
+--- !u!65 &1317671085
 BoxCollider:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
@@ -2734,7 +2762,7 @@ GameObject:
   - component: {fileID: 1781863430}
   m_Layer: 0
   m_Name: Base Square Enemy
-  m_TagString: Untagged
+  m_TagString: EnemyBase
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
