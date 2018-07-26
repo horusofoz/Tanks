@@ -401,7 +401,7 @@ Transform:
   - {fileID: 1140552273}
   - {fileID: 1043183152}
   m_Father: {fileID: 896518779}
-  m_RootOrder: 3
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &292878955
 Prefab:
@@ -547,6 +547,21 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 3.8686624, y: 5.9501963, z: 4.058463}
   m_Center: {x: -0.20600992, y: 2.9750981, z: -0.3607931}
+--- !u!1 &559884684 stripped
+GameObject:
+  m_PrefabParentObject: {fileID: 100010, guid: a81f6f1dcda19ce42970daabae71f04d, type: 3}
+  m_PrefabInternal: {fileID: 1976867558}
+--- !u!114 &559884688
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 559884684}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 06b5ecdc318db0a4584284a5dc6e05b5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &572843852
 GameObject:
   m_ObjectHideFlags: 0
@@ -792,7 +807,7 @@ Transform:
   - {fileID: 1862821111}
   - {fileID: 898725242}
   m_Father: {fileID: 896518779}
-  m_RootOrder: 2
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &773022770 stripped
 GameObject:
@@ -956,7 +971,6 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 2131579365}
-  - {fileID: 1304373329}
   - {fileID: 756591458}
   - {fileID: 290922846}
   m_Father: {fileID: 0}
@@ -1337,7 +1351,7 @@ GameObject:
   - component: {fileID: 1304373328}
   - component: {fileID: 1304373327}
   - component: {fileID: 1304373326}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: GroundPlane
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1409,8 +1423,8 @@ Transform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 10, y: 1, z: 10}
   m_Children: []
-  m_Father: {fileID: 896518779}
-  m_RootOrder: 1
+  m_Father: {fileID: 0}
+  m_RootOrder: 8
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1317671080 stripped
 GameObject:
