@@ -77,4 +77,12 @@ public class TankHealth : MonoBehaviour {
         // Turn the tank off
         gameObject.SetActive(false);
     }
+
+    private void ReSpawn()
+    {
+        // On Awake get reference to spawn position
+        // After 2 seconds move object to spawn position
+        // Enable object so that it utilises the existing OnEnable function
+        // Potential issue with main camera which is currently childed to the player tank
+    }
 }
