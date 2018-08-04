@@ -30,7 +30,7 @@ public class EnemyTankMovement : MonoBehaviour {
             m_NavAgent = GetComponent<NavMeshAgent>();
             m_Rigidbody = GetComponent<Rigidbody>();
             m_Follow = false;
-            m_EnemyTankBaseLocation = GameObject.FindGameObjectWithTag("EnemyBase").transform;
+            m_EnemyTankBaseLocation = GameObject.FindGameObjectWithTag("Enemy Base").transform;
         }
     }
 
@@ -103,7 +103,7 @@ public class EnemyTankMovement : MonoBehaviour {
         }
     }
 
-    private void ReturnToBase()
+    public void ReturnToBase()
     {
         // Get distance from enemy base to enemy tank
         float distance = (m_EnemyTankBaseLocation.position - transform.position).magnitude;

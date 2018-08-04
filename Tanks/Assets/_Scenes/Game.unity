@@ -288,7 +288,7 @@ GameObject:
   m_Component:
   - component: {fileID: 229311243}
   m_Layer: 0
-  m_Name: Buildings
+  m_Name: sDsD
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -825,7 +825,7 @@ GameObject:
   - component: {fileID: 629931896}
   m_Layer: 0
   m_Name: Base Square Player
-  m_TagString: Untagged
+  m_TagString: Player Base
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -2053,6 +2053,10 @@ Prefab:
       propertyPath: m_RootOrder
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 1979792431354154, guid: dc0eac84bc41c8641901c3cdd67abbb0, type: 2}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: dc0eac84bc41c8641901c3cdd67abbb0, type: 2}
   m_IsPrefabParent: 0
@@ -2562,7 +2566,7 @@ GameObject:
   - component: {fileID: 1781863430}
   m_Layer: 0
   m_Name: Base Square Enemy
-  m_TagString: EnemyBase
+  m_TagString: Enemy Base
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
