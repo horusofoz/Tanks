@@ -10,9 +10,6 @@ public class TankHealth : MonoBehaviour {
     // A prefab that will be instantiated in Awake, then used whenever the tank dies
     public GameObject m_ExplosionPrefab;
 
-    // Holder for camera
-    public Camera m_mainCamera;
-
     private float m_CurrentHealth;
     private bool m_Dead;
 
@@ -81,20 +78,10 @@ public class TankHealth : MonoBehaviour {
         // Play the particle system of the tank exploding
         m_ExplosionParticles.Play();
 
-        // Unparent Main Camera
-        //if(m_mainCamera != null)
-        //{
-        //    m_mainCamera.transform.parent = null;
-        //}
-
         StartCoroutine(ReSpawn());
 
         // Turn the tank off
-        //gameObject.SetActive(false);
-
-        // Turn renderer gameObject off instead of object so can still run ReSpawn
-        m_TankRenderers.SetActive(false);
-        
+        gameObject.SetActive(false);        
     }
 
     private IEnumerator ReSpawn()
@@ -106,11 +93,7 @@ public class TankHealth : MonoBehaviour {
         gameObject.transform.position = m_StartingPosition.position;
 
         // Enable object so that it utilises the existing OnEnable function
-        //gameObject.SetActive(true);
-
-        m_TankRenderers.SetActive(true);
-
-        // Potential issue with main camera which is currently childed to the player tank
+        gameObject.SetActive(true);
     }
 
     private Transform GetStartingPosition()
