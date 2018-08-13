@@ -56,6 +56,7 @@ public class EnemyTankMovement : MonoBehaviour {
     {
         // when the tank is turned on, make sure it is not kinematic
         m_Rigidbody.isKinematic = false;
+        transform.position = m_EnemyTankBaseLocation.position;
     }
 
     private void OnDisable()
