@@ -8,8 +8,11 @@ public class GameManager : MonoBehaviour
     // Reference to the overlay Text to display winning text, etc
     public Text m_MessageText;
     public Text m_TimerText;
+    public Text m_TimeToBeatText;
 
     public GameObject[] m_Tanks;
+
+    ArrayList m_gameTimeList = new ArrayList();
 
     private float m_gameTime = 0f;
     public float GameTime { get { return m_gameTime; } }
@@ -38,6 +41,7 @@ public class GameManager : MonoBehaviour
 
         m_TimerText.gameObject.SetActive(false);
         m_MessageText.text = "Get Ready";
+        m_TimeToBeatText.text = "";
     }
 
     private void Update()
@@ -69,6 +73,7 @@ public class GameManager : MonoBehaviour
         {
             m_TimerText.gameObject.SetActive(true);
             m_MessageText.text = "";
+            m_TimeToBeatText.text = "";
 
             m_GameState = GameState.Playing;
 
@@ -103,6 +108,8 @@ public class GameManager : MonoBehaviour
 
             m_TimerText.gameObject.SetActive(false);
 
+            m_gameTimeList.Add(seconds);
+
             if(IsPlayerDead() == true)
             {
                 m_MessageText.text = "TRY AGAIN";
@@ -111,6 +118,10 @@ public class GameManager : MonoBehaviour
             {
                 m_MessageText.text = "WINNER!";
             }
+
+            int timeToBeat = FindTimeToBeat();
+
+            m_TimeToBeatText.text = "Time To Beat: " + string.Format("{0:D2}:{1:D2}", (timeToBeat / 60), (timeToBeat % 60));
         }
     }
 
@@ -122,6 +133,7 @@ public class GameManager : MonoBehaviour
             m_GameState = GameState.Playing;
 
             m_MessageText.text = "";
+            m_TimeToBeatText.text = "";
             m_TimerText.gameObject.SetActive(true);
 
             for (int i = 0; i < m_Tanks.Length; i++)
@@ -161,5 +173,18 @@ public class GameManager : MonoBehaviour
         return false;
     }
 
+    private int FindTimeToBeat()
+    {
+        int timeToBeat = int.MaxValue;
 
+        foreach (int time in m_gameTimeList)
+        {
+            if(time < timeToBeat)
+            {
+                timeToBeat = time;
+            }
+        }
+
+        return timeToBeat;
+    }
 }
