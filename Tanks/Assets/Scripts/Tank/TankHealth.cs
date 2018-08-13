@@ -19,9 +19,6 @@ public class TankHealth : MonoBehaviour {
     // Reference to enemy base/spawn location
     private Transform m_StartingPosition;
 
-    // Reference to tank renderer game object
-    private GameObject m_TankRenderers;
-
     private void Awake()
     {
         // Instantiate the explosion prefab and get a reference to the particle system on it
@@ -32,9 +29,6 @@ public class TankHealth : MonoBehaviour {
 
         // Get reference to enemy base/spawn location
         m_StartingPosition = GetStartingPosition();
-
-        // Get reference to tank renderer game object
-        m_TankRenderers = gameObject.transform.Find("TankRenderers").gameObject;
     }
 
     private void OnEnable()

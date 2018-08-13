@@ -1,9 +1,14 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class GameManager : MonoBehaviour
 {
+    // Reference to the overlay Text to display winning text, etc
+    public Text m_MessageText;
+    public Text m_TimerText;
+
     public GameObject[] m_Tanks;
 
     private float m_gameTime = 0f;
@@ -30,6 +35,9 @@ public class GameManager : MonoBehaviour
         {
             m_Tanks[i].SetActive(false);
         }
+
+        m_TimerText.gameObject.SetActive(false);
+        m_MessageText.text = "Get Ready";
     }
 
     private void Update()
@@ -59,6 +67,9 @@ public class GameManager : MonoBehaviour
     {
         if(Input.GetKeyUp(KeyCode.Return) == true)
         {
+            m_TimerText.gameObject.SetActive(true);
+            m_MessageText.text = "";
+
             m_GameState = GameState.Playing;
 
             for(int i = 0; i < m_Tanks.Length; i++)
@@ -75,6 +86,8 @@ public class GameManager : MonoBehaviour
         m_gameTime += Time.deltaTime;
         int seconds = Mathf.RoundToInt(m_gameTime);
 
+        m_TimerText.text = string.Format("{0:D2}:{1:D2}", (seconds / 60), (seconds % 60));
+
         if (OneTankLeft() == true)
         {
             isGameOver = true;
@@ -87,6 +100,17 @@ public class GameManager : MonoBehaviour
         if(isGameOver == true)
         {
             m_GameState = GameState.GameOver;
+
+            m_TimerText.gameObject.SetActive(false);
+
+            if(IsPlayerDead() == true)
+            {
+                m_MessageText.text = "TRY AGAIN";
+            }
+            else
+            {
+                m_MessageText.text = "WINNER!";
+            }
         }
     }
 
@@ -96,6 +120,9 @@ public class GameManager : MonoBehaviour
         {
             m_gameTime = 0;
             m_GameState = GameState.Playing;
+
+            m_MessageText.text = "";
+            m_TimerText.gameObject.SetActive(true);
 
             for (int i = 0; i < m_Tanks.Length; i++)
             {
