@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using System.IO;
+using System;
 
 public class HighScores : MonoBehaviour {
 
@@ -20,6 +21,11 @@ public class HighScores : MonoBehaviour {
 
         // Load the scores by default.
         LoadScoresFromFile();
+    }
+
+    private void Update()
+    {
+        ManuallyLoadSaveHighScores();
     }
 
     public void LoadScoresFromFile()
@@ -41,7 +47,18 @@ public class HighScores : MonoBehaviour {
 
         // Now we read the file in. We do this using a "StreamReader" which we give our fill file path to. 
         // Don't forget the directory seperatior between the directory and the filename!
-        StreamReader fileReader = new StreamReader(currentDirectory + "\\" + scoreFileName);
+
+        StreamReader fileReader;
+
+        try
+        {
+            fileReader = new StreamReader(currentDirectory + "\\" + scoreFileName);
+        }
+        catch (Exception e)
+        {
+            Debug.Log(e.Message);
+            return;
+        }
 
         // A counter to make sure we don't go past the end of our scores
         int scoreCount = 0;
@@ -79,14 +96,27 @@ public class HighScores : MonoBehaviour {
     public void SaveScoresToFile()
     {
         // Create a StreamWriter for our file path.
-        StreamWriter fileWriter = new StreamWriter(currentDirectory + "\\" + scoreFileName);
 
-        // Write the lines to the file
-        for(int i = 0; i < scores.Length; i++)
+        StreamWriter fileWriter;
+
+        try
         {
-            fileWriter.WriteLine(scores[i]);
-            Debug.Log(i + ": " + scores[i]);
+            fileWriter = new StreamWriter(currentDirectory + "\\" + scoreFileName);
+
+            // Write the lines to the file
+            for (int i = 0; i < scores.Length; i++)
+            {
+                fileWriter.WriteLine(scores[i]);
+                Debug.Log(i + ": " + scores[i]);
+            }
         }
+        catch (Exception e)
+        {
+            Debug.Log(e.Message);
+            return;
+        }       
+
+        
 
         fileWriter.Close();
 
@@ -126,5 +156,22 @@ public class HighScores : MonoBehaviour {
         // Insert our new score in its place
         scores[desiredIndex] = newScore;
         Debug.Log("Score of " + newScore + " entered into high scores at position " + desiredIndex, this);
+    }
+
+    private void ManuallyLoadSaveHighScores()
+    {
+        if(Input.GetKeyDown(KeyCode.F9))
+        {
+            SaveScoresToFile();
+        }
+        if (Input.GetKeyDown(KeyCode.F10))
+        {
+            LoadScoresFromFile();
+            Debug.Log("High Scores Loaded...");
+            for (int i = 0; i < scores.Length; i++)
+            {
+                Debug.Log((i + 1) + ": " + scores[i]);
+            }
+        }
     }
 }
