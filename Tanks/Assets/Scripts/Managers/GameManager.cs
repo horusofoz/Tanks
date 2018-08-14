@@ -5,6 +5,8 @@ using UnityEngine.UI;
 
 public class GameManager : MonoBehaviour
 {
+    public HighScores m_HighScores;
+    
     // Reference to the overlay Text to display winning text, etc
     public Text m_MessageText;
     public Text m_TimerText;
@@ -117,6 +119,10 @@ public class GameManager : MonoBehaviour
             else
             {
                 m_MessageText.text = "WINNER!";
+
+                // Save the score
+                m_HighScores.AddScore(Mathf.RoundToInt(m_gameTime));
+                m_HighScores.SaveScoresToFile();
             }
 
             int timeToBeat = FindTimeToBeat();

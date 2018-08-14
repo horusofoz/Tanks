@@ -1696,6 +1696,7 @@ GameObject:
   m_Component:
   - component: {fileID: 940347515}
   - component: {fileID: 940347514}
+  - component: {fileID: 940347516}
   m_Layer: 0
   m_Name: Game Manager
   m_TagString: Untagged
@@ -1714,8 +1715,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ad12640495198034d958e09f9757d4ae, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  m_HighScores: {fileID: 940347516}
   m_MessageText: {fileID: 926690626}
   m_TimerText: {fileID: 804710489}
+  m_TimeToBeatText: {fileID: 1331117389}
   m_Tanks:
   - {fileID: 1497142912}
   - {fileID: 1053767461}
@@ -1732,6 +1735,19 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &940347516
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 940347513}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6d974c6ceb7f90540a90695b56c8a7e4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  scores: 00000000000000000000000000000000000000000000000000000000000000000000000000000000
+  scoreFileName: highscores.txt
 --- !u!1 &971516476
 GameObject:
   m_ObjectHideFlags: 0
