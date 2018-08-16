@@ -30,6 +30,7 @@ public class HighScores : MonoBehaviour {
 
     public void LoadScoresFromFile()
     {
+#if UNITY_STANDALONE
         // Before we try to read a file, we should check that it exists. If it doesn't exist, we'll log a mesage and abort.
         bool fileExists = File.Exists(currentDirectory + "\\" + scoreFileName);
         if (fileExists == true)
@@ -91,10 +92,12 @@ public class HighScores : MonoBehaviour {
         // Make sure to close the stream!
         fileReader.Close();
         Debug.Log("High scores read from " + scoreFileName);
+#endif
     }
 
     public void SaveScoresToFile()
     {
+#if UNITY_STANDALONE
         // Create a StreamWriter for our file path.
 
         StreamWriter fileWriter;
@@ -122,6 +125,7 @@ public class HighScores : MonoBehaviour {
 
         // Write a log message.
         Debug.Log("High scores written to " + scoreFileName);
+#endif
     }
 
     public void AddScore(int newScore)
