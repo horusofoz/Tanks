@@ -17,6 +17,7 @@ public class GameManager : MonoBehaviour
 
     public Button m_NewGameButton;
     public Button m_HighScoresButton;
+	public Button m_QuitButton;
 
     private int seconds;
 
@@ -217,6 +218,7 @@ public class GameManager : MonoBehaviour
     {
         m_NewGameButton.gameObject.SetActive(toggle);
         m_HighScoresButton.gameObject.SetActive(toggle);
+		m_QuitButton.gameObject.SetActive (toggle);
 
         if(toggle == false)
         {
