@@ -21,6 +21,8 @@ public class GameManager : MonoBehaviour
 
     private int seconds;
 
+    public static bool GameIsPaused = false;
+
     public GameObject[] m_Tanks;
 
     ArrayList m_gameTimeList = new ArrayList();
@@ -38,9 +40,18 @@ public class GameManager : MonoBehaviour
     private GameState m_GameState;
     public GameState State { get { return m_GameState; } }
 
+
+    private Transform m_EnemyTankBaseLocation;
+    private Transform m_PlayerTankBaseLocation;
+    public GameObject m_EnemyTank;
+    public GameObject m_PlayerTank;
+
+
     private void Awake()
     {
         m_GameState = GameState.Start;
+        m_EnemyTankBaseLocation = GameObject.FindGameObjectWithTag("Enemy Base").transform;
+        m_PlayerTankBaseLocation = GameObject.FindGameObjectWithTag("Player Base").transform;
     }
 
     private void Start()
@@ -53,10 +64,6 @@ public class GameManager : MonoBehaviour
         m_TimerText.gameObject.SetActive(false);
         m_MessageText.text = "Get Ready";
         m_TimeToBeatText.text = "";
-
-        //m_HighScorePanel.gameObject.SetActive(false);
-        //m_NewGameButton.gameObject.SetActive(false);
-        //m_HighScoresButton.gameObject.SetActive(false);
 
         DisplayButtons(false);
     }
@@ -149,6 +156,8 @@ public class GameManager : MonoBehaviour
 
             m_TimeToBeatText.text = "Time To Beat: " + string.Format("{0:D2}:{1:D2}", (timeToBeat / 60), (timeToBeat % 60));
         }
+
+        CheckForPause();
     }
 
     private void ManageStateGameOver()
@@ -214,7 +223,7 @@ public class GameManager : MonoBehaviour
         return timeToBeat;
     }
 
-    private void DisplayButtons(bool toggle)
+    public void DisplayButtons(bool toggle)
     {
         m_NewGameButton.gameObject.SetActive(toggle);
         m_HighScoresButton.gameObject.SetActive(toggle);
@@ -229,17 +238,21 @@ public class GameManager : MonoBehaviour
     public void OnNewGame()
     {
         DisplayButtons(false);
-    // m_HighScorePanel.SetActive(false);
 
         m_gameTime = 0;
         m_GameState = GameState.Playing;
         m_TimerText.gameObject.SetActive(true);
         m_MessageText.text = "";
+        m_TimeToBeatText.text = "";
+
+    ResetTankPositions();
 
         for (int i = 0; i < m_Tanks.Length; i++)
         {
             m_Tanks[i].SetActive(true);
         }
+
+        Resume();
     }
 
     public void OnHighScores()
@@ -260,5 +273,44 @@ public class GameManager : MonoBehaviour
     public void OnBackButton()
     {
         m_HighScorePanel.SetActive(false);
+        m_MessageText.text = "Paused";
+        m_HighScoresButton.gameObject.SetActive(true);
+    }
+
+    public void CheckForPause()
+    {
+        if (Input.GetKeyDown(KeyCode.Escape) || Input.GetKeyDown(KeyCode.P))
+        {
+            if (GameIsPaused)
+            {
+                DisplayButtons(false);
+                m_MessageText.text = "";
+                Resume();
+            }
+            else
+            {
+                Pause();
+                DisplayButtons(true);
+                m_MessageText.text = "Paused";
+            }
+        }
+    }
+
+    public void Pause()
+    {
+        Time.timeScale = 0f;
+        GameIsPaused = true;
+    }
+
+    public void Resume()
+    {
+        Time.timeScale = 1f;
+        GameIsPaused = false;
+    }
+
+    public void ResetTankPositions()
+    {
+        m_EnemyTank.transform.position = m_EnemyTankBaseLocation.position;
+        m_PlayerTank.transform.position = m_PlayerTankBaseLocation.position;
     }
 }

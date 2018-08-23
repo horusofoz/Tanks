@@ -11,7 +11,7 @@ public class TankShooting : MonoBehaviour {
     // The force given to the shell when firing
     public float m_LaunchForce = 30f;
 
-
+    private bool IsGamePaused;
 
 	// Use this for initialization
 	void Start ()
